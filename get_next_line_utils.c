@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:56:44 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 12:12:01 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:38:45 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	free(s1);
 	return (str);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+	{
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }

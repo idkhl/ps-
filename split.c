@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 11:15:58 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:32:49 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/11 09:24:01 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	count_words(char *s, char c)
 	return (count);
 }
 
-static char	**malloc_free(char	**tab)
+char	**malloc_free(char	**tab)
 {
 	int	i;
 

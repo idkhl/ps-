@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:48:16 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:29:16 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:47:29 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	bonus(int flag)
 	if (flag == 0)
 		return (0);
 	else
-		return (0);
+		return (1);
 }
 
 int	main(int ac, char **av)
@@ -67,54 +67,24 @@ int	main(int ac, char **av)
 	char	**params;
 	char	*join_all;
 
-	bonus(0);
 	join_all = ft_strjoin2(ac - 1, &av[1], " ");
 	if (!join_all)
 		return (0);
 	params = ft_split(join_all, ' ');
 	free(join_all);
-	if (params == NULL)
+	if (!params)
 		return (0);
-	if (check_doublons(ac, params) == -1 || check_max(params) == -1
-		|| check_int(params) == -1)
+	if (check_entry(ac, params) == -1)
+	{
+		malloc_free(params);
 		return (0);
+	}
 	a = fill_stack(params);
 	b = NULL;
-	free(params);
+	malloc_free(params);
 	indexage(a, stack_size(a));
 	sort(&a, &b);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
 }
-
-// void	writelsta(t_stack *stack)
-// {
-// 	printf("\n");
-
-// 	printf(" \nDEBUT AFFICHAGE DE LISTE A\n");
-// 	while (stack != NULL)
-// 	{
-// 		printf("%d\n", stack->content);
-// 		stack = stack->next;
-// 		//if (stack != NULL)
-// 		//printf(" - ");
-// 	}
-// 	printf(" \nFIN AFFICHAGE DE LISTE A\n");
-// 	//printf("stack : %d\n", stack->content);
-// }
-
-// void	writelstb(t_stack *stack)
-// {
-// 	printf("\n");
-// 	printf(" \nDEBUT AFFICHAGE DE LISTE B\n");
-// 	while (stack != NULL)
-// 	{
-// 		printf("%d\n", stack->content);
-// 		stack = stack->next;
-// 		//if (stack != NULL)
-// 		//printf(" - ");
-// 	}
-// 	printf(" \nFIN AFFICHAGE DE LISTE B\n");
-// 	//printf("stack : %d\n", stack->content);
-// }

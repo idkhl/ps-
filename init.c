@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 13:39:29 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:31:51 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:39:46 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_stack	*fill_stack(char **params)
 	i = 0;
 	s = NULL;
 	new = NULL;
-	while (params[i])
+	while (params[i] != NULL)
 	{
 		if (i == 0)
 			s = initstack(ft_atol(params[i]));
@@ -78,34 +78,6 @@ void	indexage(t_stack *a, int taille)
 			changed->index = i;
 	}
 }
-
-// void	indexage(t_stack *a, int size)
-// {
-// 	t_stack	*tmp;
-// 	t_stack	*min;
-// 	int		content;
-// 	int		index;
-
-// 	index = 1;
-// 	while (size > 0)
-// 	{
-// 		tmp = a;
-// 		content = INT_MAX;
-// 		while (tmp)
-// 		{
-// 			if (tmp->content <= content && tmp->index == -1)
-// 			{
-// 				content = tmp->content;
-// 				min = tmp;
-// 			}
-// 			tmp = tmp->next;
-// 		}
-// 		min->index = index;
-// 		index++;
-// 		size--;
-// 		printf("INDEX : %d | CONTENT : %d\n", min->index, min->content);
-// 	}
-// }
 
 int	stack_size(t_stack *s)
 {

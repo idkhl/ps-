@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 10:42:13 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/26 10:59:56 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:01:43 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ void	megasort(t_stack **a, t_stack **b)
 
 void	cost(t_stack **a, t_stack **b)
 {
-	t_stack	*tmpa;
 	t_stack	*tmpb;
 	int		sizea;
 	int		sizeb;
 
 	sizea = stack_size(*a);
 	sizeb = stack_size(*b);
-	tmpa = *a;
 	tmpb = *b;
 	while (tmpb)
 	{

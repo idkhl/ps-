@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 09:30:06 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:51:01 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/11 06:45:52 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ long	ft_atol(char *str)
 		nb = (nb * 10) + (str[i++] - 48);
 	if (neg)
 		return (-nb);
-	if (nb > LONG_MAX)
-		return(LONG_MAX);
+	if (nb > INT_MAX)
+		return (LONG_MAX);
 	return (nb);
 }
 

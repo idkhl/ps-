@@ -6,27 +6,14 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:11:24 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:33:00 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 17:31:30 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "get_next_line.h"
-#include "string.h"
 
-static int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-static void	check(t_stack **a, t_stack **b, char *line)
+static int	check(t_stack **a, t_stack **b, char *line)
 {
 	if (ft_strcmp(line, "sa\n") == 0)
 		sa(a);
@@ -51,15 +38,18 @@ static void	check(t_stack **a, t_stack **b, char *line)
 	else if (ft_strcmp(line, "rrr\n") == 0)
 		rrr(a, b);
 	else
-		write(2, "Error\n", 6);
+		return (write(2, "Error\n", 6), exit(0), -1);
+	return (1);
 }
 
-static int	sortedd(t_stack *stack)
+static int	sortedd(t_stack *a)
 {
 	int		i;
 	t_stack	*tmp;
 
-	tmp = stack;
+	if (!a)
+		return (exit(0), write(2, "Error\n", 6), -1);
+	tmp = a;
 	i = tmp->content;
 	while (tmp)
 	{
@@ -71,56 +61,86 @@ static int	sortedd(t_stack *stack)
 	return (1);
 }
 
-static void	check_if_sorted(t_stack **a)
+static void	check_if_sorted(t_stack **a, t_stack **b)
 {
-	if (!sortedd(*a))
+	if (!sortedd(*a) || *b)
 		write(2, "KO\n", 3);
-	else if (sortedd(*a))
+	else if (sortedd(*a) && !(*b))
 		write(1, "OK\n", 3);
+	free_stack(a);
+	free_stack(b);
 }
 
 int	bonus(int flag)
 {
-	if (flag == 1)
+	if (flag == 0)
 		return (1);
 	else
-		return (1);
+		return (0);
 }
 
 int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
-	char	*line;
 	char	**params;
-	char	*join_all;
+	char	*line;
 
-	bonus(1);
-	join_all = ft_strjoin2(ac - 1, &av[1], " ");
-	if (!join_all)
+	line = ft_strjoin2(ac - 1, &av[1], " ");
+	if (!line)
 		return (0);
-	params = ft_split(join_all, ' ');
-	free(join_all);
-	if (params == NULL)
-		return (0);
-	if (check_doublons(ac, params) == -1 || check_max(params) == -1
-		|| check_int(params) == -1)
-		return (0);
+	params = ft_split(line, ' ');
+	free(line);
+	if (!params || check_entry(ac, params) == -1)
+		return (malloc_free(params), -1);
 	a = fill_stack(params);
 	b = NULL;
-	free(params);
+	malloc_free(params);
 	indexage(a, stack_size(a));
 	line = get_next_line(0);
-	while (line)
+	while (line && check(&a, &b, line))
 	{
-		check(&a, &b, line);
 		free(line);
 		line = get_next_line(0);
 	}
 	if (line)
 		free(line);
-	check_if_sorted(&a);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+	return (check_if_sorted(&a, &b), 0);
 }
+
+// int	main(int ac, char **av)
+// {
+// 	t_stack	*a;
+// 	t_stack	*b;
+// 	char	**params;
+// 	char	*line;
+// 	char	*join_all;
+
+// 	join_all = ft_strjoin2(ac - 1, &av[1], " ");
+// 	if (!join_all)
+// 		return (0);
+// 	params = ft_split(join_all, ' ');
+// 	free(join_all);
+// 	if (!params)
+// 		return (0);
+// 	if (check_entry(ac, params) == -1)
+// 	{
+// 		malloc_free(params);
+// 		return (-1);
+// 	}
+// 	a = fill_stack(params);
+// 	b = NULL;
+// 	malloc_free(params);
+// 	indexage(a, stack_size(a));
+// 	line = get_next_line(0);
+// 	while (line)
+// 	{
+// 		check(&a, &b, line);
+// 		free(line);
+// 		line = get_next_line(0);
+// 	}
+// 	if (line)
+// 		free(line);
+// 	check_if_sorted(&a, &b);
+// 	return (0);
+// }

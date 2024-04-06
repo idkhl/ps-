@@ -6,11 +6,23 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:14:10 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 17:48:30 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:38:41 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_entry(int ac, char **av)
+{
+	if (check_doublons(ac, av) == -1)
+		return (-1);
+	if (check_max(av) == -1 || check_int(av) == -1)
+		return (-1);
+	if (!*av)
+		return (write(2, "Error\n", 6), -1);
+	else
+		return (0);
+}
 
 int	check_doublons(int ac, char **args)
 {
@@ -20,7 +32,7 @@ int	check_doublons(int ac, char **args)
 	i = 0;
 	if (ac == 1)
 	{
-		return (0);
+		return (-1);
 	}
 	while (i < ac - 1)
 	{
@@ -58,10 +70,10 @@ int	check_max(char **args)
 		}
 		if (j > 12 + zero)
 			return (write(2, "Error\n", 6), -1);
-		printf("%ld", ft_atol(args[i]));
 		if (ft_atol(args[i]) > INT_MAX || ft_atol(args[i]) < INT_MIN)
 			return (write(2, "Error\n", 6), -1);
 		i++;
+		zero = 0;
 	}
 	return (0);
 }
@@ -77,10 +89,14 @@ int	check_int(char **args)
 		j = 0;
 		while (args[i][j])
 		{
-			if (args[i][j] != '-'
-			&& (args[i][j] < '0' || args[i][j] > '9')
-			&& args[i][j] != ' '
-			&& args[i][j] != '+')
+			if (args[i][j] != '-' && (args[i][j] < '0' || args[i][j] > '9')
+			&& args[i][j] != ' ' && args[i][j] != '+')
+				return (write(2, "Error\n", 6), -1);
+			if ((args[i][j] == '-' || args[i][j] == '+')
+			&& j != 0)
+				return (write(2, "Error\n", 6), -1);
+			if ((args[i][j] == '-' || args[i][j] == '+')
+			&& ft_strlen2(args[i]) == 1)
 				return (write(2, "Error\n", 6), -1);
 			j++;
 		}
@@ -88,10 +104,3 @@ int	check_int(char **args)
 	}
 	return (0);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	check_doublons(ac, av);
-// 	check_int(av);
-// 	check_max(av);
-// }

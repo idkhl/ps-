@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:55:13 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/26 19:35:11 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:39:00 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 size_t			ft_strlen(char *str);
 char			*ft_strchr(char *s, int c);
 char			*ft_strjoin(char *s1, char *s2);
+int				ft_strcmp(char *s1, char *s2);
 
 char			*get_next_line(int fd);
 char			*ft_get_line(char *stash);

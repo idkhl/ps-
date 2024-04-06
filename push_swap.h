@@ -6,7 +6,7 @@
 /*   By: idakhlao <idakhlao@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:42:07 by idakhlao          #+#    #+#             */
-/*   Updated: 2024/02/27 15:39:26 by idakhlao         ###   ########.fr       */
+/*   Updated: 2024/03/13 13:39:54 by idakhlao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void		rotb(t_stack **stackb, int *coutb);
 int			check_doublons(int ac, char **args);
 int			check_max(char **args);
 int			check_int(char **args);
+int			check_entry(int ac, char **av);
 
 t_stack		*initstack(int content);
 t_stack		*fill_stack(char **av);
@@ -80,6 +81,7 @@ void		ft_lstadd_back(t_stack **lst, t_stack *elem);
 
 long		ft_atol(char *str);
 char		**ft_split(const char *s, char c);
+char		**malloc_free(char	**tab);
 char		*ft_strjoin2(int size, char **strs, char *sep);
 int			ft_strlen2(char *str);
 void		free_stack(t_stack **stack);
@@ -87,8 +89,5 @@ int			nb_abs(int nb);
 void		echange(int *v, t_stack **changed, t_stack **ptr, t_stack *stack);
 
 int			bonus(int flag);
-// void		writelsta(t_stack *a);
-// void		writelstb(t_stack *b);
-// void		print_index(t_stack *stack);
 
 #endif
